@@ -2,6 +2,8 @@ package com.example.estudiantes.entidades;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="profesores")
 public class Profesor {
@@ -17,13 +19,17 @@ public class Profesor {
     @Column(name="escalafon")
     private Integer escalafon;
 
+    @OneToMany(mappedBy = "profesor")
+    private List<Curso> cursos;
+
     public Profesor() {
     }
 
-    public Profesor(Integer id, String nombre, Integer escalafon) {
+    public Profesor(Integer id, String nombre, Integer escalafon, List<Curso> cursos) {
         this.id = id;
         this.nombre = nombre;
         this.escalafon = escalafon;
+        this.cursos = cursos;
     }
 
     public Integer getId() {
